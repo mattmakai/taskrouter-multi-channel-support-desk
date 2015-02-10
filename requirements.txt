@@ -1,0 +1,6 @@
+Flask==0.10.1
+
+git+ssh://git@github.com/twilio/python-private@wds
+
+# the following requirement is for deploying on Heroku
+gunicorn==19.2.1
