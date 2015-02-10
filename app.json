@@ -1,6 +1,6 @@
 {
-    "name": "Multi Channel Call Center with Twilio TaskRouter",
-    "description": "A Flask app that handles inbound calling and SMS. Uses TaskRouter to coordinate handing off calls and messages to call center agents.",
+    "name": "Multi Channel Support Desk with Twilio TaskRouter",
+    "description": "A Flask app that handles inbound calling and SMS. Uses TaskRouter to coordinate handing off calls and messages to support desk agents.",
     "keywords": [
         "twilio",
         "call center",
@@ -9,7 +9,7 @@
         "python"
     ],
     "website": "https://www.twilio.com",
-    "repository": "https://github.com/makaimc/taskrouter-multi-channel-call-center",
+    "repository": "https://github.com/makaimc/taskrouter-multi-channel-support-desk",
     "logo": "https://www.twilio.com/bundles/marketing/img/logos/wordmark-red.svg",
     "env": {
         "TWILIO_ACCOUNT_SID": {
@@ -19,7 +19,11 @@
         "TWILIO_AUTH_TOKEN": {
             "description": "Your Twilio account's secret key, found here: https://www.twilio.com/user/account",
             "value": "yyyyyyyyyyyyyyyyyy"
-        }
+        },
+        "TWILIO_WORKSPACE_SID": {
+            "description": "Workspace SID for workspace you want to use for this support desk, found here: https://www.twilio.com/user/account/taskrouter/workspaces",
+            "value": "WSzzzzzzzzzzzzzzzzzzz"
+        },
     },
     "success_url": "/"
 }

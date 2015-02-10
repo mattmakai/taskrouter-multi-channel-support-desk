@@ -1,15 +1,28 @@
 import os
-from flask import Flask
+from flask import Flask, Response
 from twilio import twiml
 from twilio.rest import TwilioTaskRouterClient
 
 
+ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', '')
+AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN', '')
+WORKSPACE_SID = os.environ.get('WORKSPACE_SID', '')
+
 app = Flask(__name__)
 
+tr_client = TwilioTaskRouterClient(base='https://wds.twilio.com',
+                                   account=ACCOUNT_SID, token=AUTH_TOKEN)
 
 @app.route('/')
 def working():
-    return "Web application up and running!"
+    return "Service desk up and running!"
+
+
+@app.route('/call', methods=['GET', 'POST'])
+def call():
+    r = twiml.Response()
+    r.enqueue('', workflowSid=WORKSPACE_SID)
+    return Response(str(r), content_type='application/xml')
 
 
 if __name__ == '__main__':
