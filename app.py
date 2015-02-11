@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def working():
-    return "Service desk up and running!"
+    return "Support desk up and running!"
 
 
 @app.route('/call', methods=['GET', 'POST'])
