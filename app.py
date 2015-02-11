@@ -6,12 +6,10 @@ from twilio.rest import TwilioTaskRouterClient
 
 ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', '')
 AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN', '')
-WORKSPACE_SID = os.environ.get('WORKSPACE_SID', '')
+SUPPORT_AGENT_NUMBER = os.environ.get('SUPPORT_AGENT_NUMBER', '')
 
 app = Flask(__name__)
 
-tr_client = TwilioTaskRouterClient(base='https://wds.twilio.com',
-                                   account=ACCOUNT_SID, token=AUTH_TOKEN)
 
 @app.route('/')
 def working():
@@ -21,7 +19,7 @@ def working():
 @app.route('/call', methods=['GET', 'POST'])
 def call():
     r = twiml.Response()
-    r.enqueue('', workflowSid=WORKSPACE_SID)
+    r.dial(SUPPORT_AGENT_NUMBER)
     return Response(str(r), content_type='application/xml')
 
 
