@@ -1,7 +1,6 @@
 import os
 from flask import Flask, Response
 from twilio import twiml
-from twilio.rest import TwilioTaskRouterClient
 
 
 ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', '')
