@@ -31,22 +31,23 @@ def call():
 
 @app.route('/assign', methods=['POST'])
 def assign():
-    if "caller" in json.loads(request.form['TaskAttributes']).keys():
+    task_attrs = json.loads(request.form['TaskAttributes'])
+    if 'task_type' in task_attrs and task_attrs['task_type'] == 'sms':
         number = json.loads(request.form['WorkerAttributes'])['phone_number']
         instruction = {"instruction": "accept"}
         client.messages.create(from_=SUPPORT_DESK_NUMBER, to=number,
-            body="Customer #x asks: ")
+            body='Customer question: "{0}"'.format(task_attrs['body']))
         return Response(json.dumps(instruction),
                         content_type='application/json')
-    else:
-        number = json.loads(request.form['WorkerAttributes'])['phone_number']
-        instruction = {
-            "instruction": "dequeue",
-            "to": number,
-            "from": SUPPORT_DESK_NUMBER
-        }
-        return Response(json.dumps(instruction),
-                        content_type='application/json')
+    # defaults to voice call
+    number = json.loads(request.form['WorkerAttributes'])['phone_number']
+    instruction = {
+        "instruction": "dequeue",
+        "to": number,
+        "from": SUPPORT_DESK_NUMBER
+    }
+    return Response(json.dumps(instruction),
+                    content_type='application/json')
 
 
 @app.route('/message', methods=['POST'])
