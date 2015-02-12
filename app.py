@@ -1,5 +1,6 @@
+import json
 import os
-from flask import Flask, Response
+from flask import Flask, Response, request
 from twilio import twiml
 
 
@@ -23,7 +24,7 @@ def call():
     return Response(str(r), content_type='application/xml')
 
 
-@app.route('/call-assign', methods=['GET', 'POST'])
+@app.route('/call-assign', methods=['POST'])
 def call_assign():
     number = json.loads(request.form['WorkerAttributes'])['number']
     instruction = {
