@@ -7,7 +7,7 @@ from twilio import twiml
 ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', '')
 AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN', '')
 SUPPORT_DESK_NUMBER = os.environ.get('SUPPORT_DESK_NUMBER', '')
-WORKSPACE_SID = os.environ.get('WORKSPACE_SID', '')
+WORKFLOW_SID = os.environ.get('WORKFLOW_SID', '')
 
 app = Flask(__name__)
 
@@ -20,13 +20,13 @@ def working():
 @app.route('/call', methods=['GET', 'POST'])
 def call():
     r = twiml.Response()
-    r.enqueue('', workflowSid=WORKSPACE_SID)
+    r.enqueue('', workflowSid=WORKFLOW_SID)
     return Response(str(r), content_type='application/xml')
 
 
 @app.route('/call-assign', methods=['POST'])
 def call_assign():
-    number = json.loads(request.form['WorkerAttributes'])['number']
+    number = json.loads(request.form['WorkerAttributes'])['phone_number']
     instruction = {
         "instruction": "dequeue",
         "to": number,
