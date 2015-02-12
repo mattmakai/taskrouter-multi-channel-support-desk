@@ -36,7 +36,8 @@ def assign():
         number = json.loads(request.form['WorkerAttributes'])['phone_number']
         instruction = {"instruction": "accept"}
         client.messages.create(from_=SUPPORT_DESK_NUMBER, to=number,
-            body='Customer question: "{0}"'.format(task_attrs['body']))
+            body='Text {0} asking "{1}"'.format(task_attrs['phone_number'],
+                                                task_attrs['body']))
         return Response(json.dumps(instruction),
                         content_type='application/json')
     # defaults to voice call
@@ -52,6 +53,14 @@ def assign():
 
 @app.route('/message', methods=['POST'])
 def message():
+    # check if one of our workers is completing a task
+    if request.form['Body'] == 'DONE':
+        from_number = request.form['From']
+        for w in tr_client.workers(WORKSPACE_SID).list():
+            if from_number == json.loads(w.attributes)['phone_number']:
+                r = twiml.Response()
+                r.message("Ticket closed.")
+                return Response(str(r), content_type='application/xml')
     task_attributes = {
         "task_type" : "sms",
         "phone_number" : request.form['From'],
