@@ -20,10 +20,18 @@
             "description": "Your Twilio account's secret key, found here: https://www.twilio.com/user/account",
             "value": "yyyyyyyyyyyyyyyyyy"
         },
-        "TWILIO_WORKSPACE_SID": {
-            "description": "Workspace SID for workspace you want to use for this support desk, found here: https://www.twilio.com/user/account/taskrouter/workspaces",
+        "WORKSPACE_SID": {
+            "description": "Twilio Workspace SID for workspace you want to use for this support desk",
             "value": "WSzzzzzzzzzzzzzzzzzzz"
         },
+        "WORKFLOW_SID": {
+            "description": "Twilio Workflow SID (different from Workspace) for workspace you want to use for this support desk",
+            "value": "WWaaaaaaaaaaaaaaaaaaa"
+        },
+        "SUPPORT_DESK_NUMBER": {
+            "description": "Twilio phone number used for the support desk",
+            "value": "+12025551234"
+        }
     },
     "success_url": "/"
 }

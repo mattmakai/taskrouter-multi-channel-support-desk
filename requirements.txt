@@ -1,6 +1,6 @@
 Flask==0.10.1
 
-git+ssh://git@github.com/twilio/python-private@wds
+twilio
 
-# the following requirement is for deploying on Heroku
+# the following requirement is just for Heroku deploy button
 gunicorn==19.2.1
