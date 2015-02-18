@@ -26,4 +26,8 @@ Heroku deploy button:
   [TaskRouter workspaces dashboard](https://www.twilio.com/user/account/taskrouter/workspaces)
   after [creating a workspace](https://www.twilio.com/user/account/taskrouter/workspaces/create)
 
+* ``WORKFLOW_SID``: Found on the TaskRouter workflow page for a given 
+  workspace
 
+* ``SUPPORT_DESK_NUMBER``: Twilio phone number used for the support desk,
+  in the +12025551234 format
