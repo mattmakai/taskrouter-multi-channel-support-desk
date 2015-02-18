@@ -1,5 +1,5 @@
 {
-    "name": "Multi Channel Support Desk with Twilio TaskRouter",
+    "name": "Multi Channel Support Desk",
     "description": "A Flask app that handles inbound calling and SMS. Uses TaskRouter to coordinate handing off calls and messages to support desk agents.",
     "keywords": [
         "twilio",
